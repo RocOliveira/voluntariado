@@ -4,6 +4,8 @@ function verMais() {
 
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("form-vaga");
+  const cepInput = document.getElementById("cep");
+  const contatoInput = document.getElementById("contato");
 
   if (form) {
     form.addEventListener("submit", (e) => {
@@ -37,11 +39,8 @@ document.addEventListener("DOMContentLoaded", () => {
       form.reset();
     });
   }
-});
-     // Máscara e busca de CEP //
-document.addEventListener("DOMContentLoaded", () => {
-  const cepInput = document.getElementById("cep");
 
+// Máscara e busca de CEP //
   if (cepInput) {
     cepInput.addEventListener("input", () => {
       cepInput.value = cepInput.value.replace(/\D/g, "").replace(/^(\d{5})(\d)/, "$1-$2");
@@ -68,4 +67,18 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+ // Máscara e busca de telefone //
+    if (contatoInput) {
+  contatoInput.addEventListener("input", () => {
+    let numero = contatoInput.value.replace(/\D/g, "");
+    if (numero.length > 11) numero = numero.slice(0, 11);
+    if (numero.length <= 10) {
+      // Formato: (XX) XXXX-XXXX
+      contatoInput.value = numero.replace(/(\d{2})(\d{4})(\d{0,4})/, "($1) $2-$3");
+    } else {
+      // Formato: (XX) 9XXXX-XXXX
+      contatoInput.value = numero.replace(/(\d{2})(\d{5})(\d{0,4})/, "($1) $2-$3");
+    }
+  });
+}
 });

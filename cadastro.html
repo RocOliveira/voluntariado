@@ -40,8 +40,9 @@
       <label>Imagem (URL)*</label>
       <input type="url" name="imagem" placeholder="https://..." required />
 
-      <label>Contato*</label>
-      <input type="text" name="contato" placeholder="(XX) XXXX-XXXX" required />
+      <label>Telefone*</label>
+      <input type="number" name="contato" required placeholder="(11) 91234-5678"
+       pattern="\(\d{2}\)\s?\d{4,5}-\d{4}" title="Formato: (11) 91234-5678" />
 
       <!--Endereço da instituição-->
     <h3>Endereço da Instituição</h3>
