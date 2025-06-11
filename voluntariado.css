@@ -93,6 +93,12 @@ form select {
   box-sizing: border-box;
 }
 
+form h3 {
+  margin-top: 2rem;
+  font-size: 1.2rem;
+  color: #333;
+}
+
 form textarea {
   resize: vertical;
 }
