@@ -1,18 +1,20 @@
 document.addEventListener("DOMContentLoaded",() =>{
-    const listaVagas = document.getElementById("lista-vagas");
+    const vagasContainer = document.getElementById("vagasContainer");
+
+//Recupera vagas do localSotrage//
     const vaga = JSON.parse(localStorage.getItem("vagas")) || [];
 
     if(vaga.length ===0){
-        listaVagas.innerHTML = "<p>Nenhuma vaga cadastrada no momento.</p>";
+        vagasContainer.innerHTML = "<p>Nenhuma vaga cadastrada no momento.</p>";
         return;
     }
 
-    vaga.forEach((vaga, index)=>{
-        const vagaCard = document.createElement("div");
-        vagaCard.classList.add("card-vaga");
+    vaga.forEach((vaga =>{
+        const card = document.createElement("div");
+        card.className = "card-vaga";
     
-    vagaCard.innerHTML = `
-      <img src="${vaga.imagem}" alt="Imagem da vaga ${vaga.titulo}" />
+    card.innerHTML = `
+      <img src="${vaga.imagem}" alt=" ${vaga.titulo}" onerror="this.src='imagens/placeholder.png'">
       <h3>${vaga.titulo}</h3>
       <p><strong>Instituição:</strong> ${vaga.instituicao}</p>
       <p><strong>Categoria:</strong> ${vaga.categoria}</p>
@@ -32,7 +34,7 @@ document.addEventListener("DOMContentLoaded",() =>{
       </div>
     `;
 
-    listaVagas.appendChild(vagaCard);
+    vagasContainer.appendChild(card);
   });
   });
 
