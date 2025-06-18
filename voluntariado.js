@@ -2,43 +2,42 @@ function verMais() {
   alert("Aqui você verá a descrição completa da vaga (em breve)!");
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("form-vaga");
-  const cepInput = document.getElementById("cep");
-  const contatoInput = document.getElementById("contato");
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("form-vaga");
+    const cepInput = document.getElementById("cep");
+    const contatoInput = document.getElementById("contato");
 
-  if (form) {
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
+    if (!form) return;
 
-      const vaga = {
-        instituicao: form.instituicao.value,
-        titulo: form.titulo.value,
-        descricao: form.descricao.value,
-        categoria: form.categoria.value,
-        imagem: form.imagem.value,
-        contato: form.contato.value,
-        endereco: {
-             cep: form.cep.value,
-             rua: form.rua.value,
-             numero: form.numero.value,
-             bairro: form.bairro.value,
-             cidade: form.cidade.value,
-             estado: form.estado.value
-        }
-      };
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
 
-      // Recupera vagas existentes ou inicia array
-      const vagas = JSON.parse(localStorage.getItem("vagas")) || [];
+        // Monta o objeto da vaga
+        const vaga = {
+            instituicao: form.instituicao.value,
+            titulo: form.titulo.value,
+            descricao: form.descricao.value,
+            categoria: form.categoria.value,
+            imagem: form.imagem.value,
+            contato: form.contato.value,
+            endereco: {
+                cep: form.cep.value,
+                rua: form.rua.value,
+                numero: form.numero.value,
+                bairro: form.bairro.value,
+                cidade: form.cidade.value,
+                estado: form.estado.value
+            }
+        };
 
-      vagas.push(vaga);
+        // Recupera vagas já cadastradas
+        let vagas = JSON.parse(localStorage.getItem("vagas")) || [];
+        vagas.push(vaga);
+        localStorage.setItem("vagas", JSON.stringify(vagas));
 
-      localStorage.setItem("vagas", JSON.stringify(vagas));
-
-      alert("Vaga cadastrada com sucesso!");
-      form.reset();
+        alert("Vaga cadastrada com sucesso!");
+        form.reset();
     });
-  }
 
 // Máscara e busca de CEP //
   if (cepInput) {

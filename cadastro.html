@@ -16,59 +16,57 @@
             </ul>
         </nav>
     </header>
-<!--Formulário para incrição das instituições e das vagas-->
     <main>
-    <h1>Cadastro de Vagas</h1>
+        <h1>Cadastro de Vagas</h1>
         <form id="form-vaga">
-        <label>Nome da Instituição*</label>
-        <input type="text" name="instituicao" required/>
+            <label>Nome da Instituição*</label>
+            <input type="text" name="instituicao" id="nomeInstituicao" required/>
 
-        <label>TÍtulo da Vaga*</label>
-        <input type="text" name="titulo" required/>
+            <label>Título da Vaga*</label>
+            <input type="text" name="titulo" required/>
 
-        <label>Descrição da Vaga*</label>
-        <textarea name="descricao" rows="4" required></textarea>
+            <label>Descrição da Vaga*</label>
+            <textarea name="descricao" rows="4" required></textarea>
 
-        <label>Categoria*</label>
-        <select name="categoria" required>
-            <option value="">Selecione</option>
-            <option value="Educação">Educação</option>
-            <option value="Saúde">Saúde</option>
-            <option value="Meio Ambiente">Meio Ambiente</option>
-        </select>
+            <label>Categoria*</label>
+            <select name="categoria" required>
+                <option value="">Selecione</option>
+                <option value="Educação">Educação</option>
+                <option value="Saúde">Saúde</option>
+                <option value="Meio Ambiente">Meio Ambiente</option>
+            </select>
 
-      <label>Imagem (URL)*</label>
-      <input type="url" name="imagem" placeholder="https://..." required />
+            <label>Imagem (URL)*</label>
+            <input type="url" name="imagem" placeholder="https://..." required />
 
-      <label>Telefone*</label>
-      <input type="number" name="contato" required placeholder="(11) 91234-5678"
-       pattern="\(\d{2}\)\s?\d{4,5}-\d{4}" title="Formato: (11) 91234-5678" />
+            <label>Telefone*</label>
+            <input type="number" name="contato" required placeholder="(11) 91234-5678"
+                pattern="\(\d{2}\)\s?\d{4,5}-\d{4}" title="Formato: (11) 91234-5678" />
 
-      <!--Endereço da instituição-->
-    <h3>Endereço da Instituição</h3>
+            <h3>Endereço da Instituição</h3>
 
-      <label>CEP*</label>
-      <input type="text" name="cep" id="cep" required maxlength="9" />
+            <label>CEP*</label>
+            <input type="text" name="cep" id="cep" required maxlength="9" />
 
-      <label>Rua*</label>
-      <input type="text" name="rua" id="rua" required />
+            <label>Rua*</label>
+            <input type="text" name="rua" id="rua" required />
 
-      <label>Número*</label>
-      <input type="text" name="numero" required />
+            <label>Número*</label>
+            <input type="text" name="numero" required />
 
-      <label>Bairro*</label>
-      <input type="text" name="bairro" id="bairro" required />
+            <label>Bairro*</label>
+            <input type="text" name="bairro" id="bairro" required />
 
-      <label>Cidade*</label>
-      <input type="text" name="cidade" id="cidade" required />
+            <label>Cidade*</label>
+            <input type="text" name="cidade" id="cidade" required />
 
-      <label>Estado*</label>
-      <input type="text" name="estado" id="estado" required />
+            <label>Estado*</label>
+            <input type="text" name="estado" id="estado" required />
 
-      <button type="submit">Cadastrar</button>
-    </form>
-</main>
-
-  <script src="voluntariado.js"></script>
+            <button type="submit" onclick="salvaInstituicao()">Cadastrar</button>
+        </form>
+    </main>
+    <!-- <script src="voluntariado.js"></script> -->
+    <script src="js/cadastro.js"></script>
 </body>
 </html>
