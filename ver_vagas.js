@@ -1,54 +1,95 @@
-const vagasContainer = document.getElementById("vagasContainer");
-let vagasGlobais = JSON.parse(localStorage.getItem("vagas")) || [];
+document.addEventListener("DOMContentLoaded", function () {
+    const vagasContainer = document.getElementById("vagasContainer");
+    const campoPesquisa = document.getElementById("campoPesquisa");
+    const filtroCategoria = document.getElementById("filtroCategoria"); // Corrigido o ID
 
-// Função para criar o card da vaga
-function criarCardVaga(vaga, index) {
-    return `
-    <div class="card-vaga">
-        <img src="${vaga.imagem}" alt="${vaga.titulo}" onerror="this.src='imagens/placeholder.png'">
-        <h3>${vaga.titulo}</h3>
-        <p><strong>Instituição:</strong> ${vaga.instituicao}</p>
-        <p><strong>Categoria:</strong> ${vaga.categoria}</p>
-        <p class="descricao-resumo">${vaga.descricao.substring(0, 100)}...</p>
-        <button class="btn-toggle" data-id="${index}" id="btn-${index}">Ver Mais</button>
-        <div class="descricao-completa" id="descricao-${index}" style="display: none;">
-            <p>${vaga.descricao}</p>
-            <p><strong>Contato:</strong> ${vaga.contato}</p>
-            <p><strong>Endereço:</strong> 
-                ${vaga.endereco.rua}, ${vaga.endereco.numero} - ${vaga.endereco.bairro}, 
-                ${vaga.endereco.cidade} - ${vaga.endereco.estado}, CEP ${vaga.endereco.cep}
-            </p>
-        </div>
-    </div>
-    `;
-}
+    // Carrega todas as vagas do localStorage
+    let vagasGlobais = JSON.parse(localStorage.getItem("vagas")) || [];
 
-// Função para renderizar as vagas
-function renderizarVagas(lista = vagasGlobais) {
-    vagasContainer.innerHTML = lista.map((vaga, idx) => criarCardVaga(vaga, idx)).join("") || "<p>Nenhuma vaga cadastrada no momento.</p>";
+    // Função para criar o card da vaga
+    function criarCardVaga(vaga) {
+        // Usa uma imagem de placeholder se a URL da imagem estiver vazia ou quebrada
+        const imageUrl = vaga.imagem && vaga.imagem.startsWith('http') ? vaga.imagem : 'imagens/placeholder.jpeg';
+        const numeroEndereco = vaga.endereco.numero ? `, ${vaga.endereco.numero}` : '';
 
-    // Adiciona eventos aos botões de expandir/recolher descrição
-    document.querySelectorAll('.btn-toggle').forEach(btn => {
-        btn.addEventListener('click', function () {
-            const id = Number(this.getAttribute('data-id'));
-            toggleDescricao(id);
-        });
-    });
-}
-
-// Função para alternar a descrição
-function toggleDescricao(index) {
-    const descricao = document.getElementById(`descricao-${index}`);
-    const botao = document.getElementById(`btn-${index}`);
-
-    if (descricao.style.display === "none") {
-        descricao.style.display = "block";
-        botao.textContent = "Ver Menos";
-    } else {
-        descricao.style.display = "none";
-        botao.textContent = "Ver Mais";
+        return `
+            <div class="card-vaga">
+                <img src="${imageUrl}" alt="${vaga.titulo}" onerror="this.src='imagens/placeholder.jpeg'">
+                <h3>${vaga.titulo}</h3>
+                <p><strong>Instituição:</strong> ${vaga.instituicao}</p>
+                <p><strong>Categoria:</strong> ${vaga.categoria}</p>
+                <p class="descricao-resumo">${vaga.descricao.substring(0, 100)}...</p>
+                <button class="btn-ver-mais" data-id="${vaga.id}">Ver Mais</button>
+                <div class="detalhes-necessidade" id="detalhes-${vaga.id}" style="display: none;">
+                    <p>${vaga.descricao}</p>
+                    <p><strong>Contato:</strong> ${vaga.contato}</p>
+                    <p><strong>Endereço:</strong> 
+                        ${vaga.endereco.rua}${numeroEndereco} - ${vaga.endereco.bairro}, 
+                        ${vaga.endereco.cidade} - ${vaga.endereco.estado}, CEP ${vaga.endereco.cep}
+                    </p>
+                </div>
+            </div>
+        `;
     }
-}
 
-// Renderiza as vagas ao carregar a página
-document.addEventListener("DOMContentLoaded", renderizarVagas);
+    // Função para renderizar as vagas com base na lista fornecida
+    function renderizarVagas(listaVagas = vagasGlobais) {
+        vagasContainer.innerHTML = ''; // Limpa o container antes de renderizar
+
+        if (listaVagas.length === 0) {
+            vagasContainer.innerHTML = '<p style="text-align: center; width: 100%;">Nenhuma vaga cadastrada ou encontrada com os filtros aplicados.</p>';
+            return;
+        }
+
+        listaVagas.forEach(vaga => {
+            vagasContainer.innerHTML += criarCardVaga(vaga);
+        });
+
+        // Adiciona eventos aos botões "Ver Mais"
+        document.querySelectorAll('.btn-ver-mais').forEach(button => {
+            button.addEventListener('click', function () {
+                const id = this.dataset.id;
+                const detalhesDiv = document.getElementById(`detalhes-${id}`);
+                
+                if (detalhesDiv.style.display === "none") {
+                    detalhesDiv.style.display = "block";
+                    this.textContent = "Ver Menos";
+                } else {
+                    detalhesDiv.style.display = "none";
+                    this.textContent = "Ver Mais";
+                }
+            });
+        });
+    }
+
+    // Função para aplicar os filtros e pesquisa
+    function aplicarFiltros() {
+        const termoPesquisa = campoPesquisa.value.toLowerCase().trim();
+        const categoriaFiltro = filtroCategoria.value;
+
+        let vagasFiltradas = vagasGlobais.filter(vaga => {
+            const tituloVaga = vaga.titulo.toLowerCase();
+            const descricaoVaga = vaga.descricao.toLowerCase();
+            const categoriaVaga = vaga.categoria;
+
+            const correspondePesquisa = tituloVaga.includes(termoPesquisa) || descricaoVaga.includes(termoPesquisa);
+            const correspondeCategoria = (categoriaFiltro === '' || categoriaVaga === categoriaFiltro);
+
+            return correspondePesquisa && correspondeCategoria;
+        });
+
+        renderizarVagas(vagasFiltradas);
+    }
+
+    // Adiciona event listeners para os campos de pesquisa e filtro
+    if (campoPesquisa) {
+        campoPesquisa.addEventListener('input', aplicarFiltros);
+    }
+
+    if (filtroCategoria) {
+        filtroCategoria.addEventListener('change', aplicarFiltros);
+    }
+
+    // Renderiza as vagas ao carregar a página pela primeira vez
+    renderizarVagas();
+});

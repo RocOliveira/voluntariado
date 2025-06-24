@@ -19,9 +19,22 @@
     <main>
         <h1>Vagas Cadastradas</h1>
         
-        <div id="vagasContainer"></div>
-    <!-- <script src="ver_vagas.js"></script> -->
+         <div class="filtros-pesquisa">
+            <input type="text" id="campoPesquisa" placeholder="Pesquisar por título ou descrição..." class="input-pesquisa">
+            <select id="filtroCategoria" class="select-filtro">
+                <option value="">Todas as Categorias</option>
+                <option value="Educação">Educação</option>
+                <option value="Saúde">Saúde</option>
+                <option value="Meio Ambiente">Meio Ambiente</option>
+                <option value="Doação de Alimentos">Doação de Alimentos</option>
+                <option value="Doação de Roupas">Doação de Roupas</option>
+                <option value="Outros">Outros</option>
+            </select>
+        </div>
 
-    <script src="js/cadastro.js"></script>
+        <div id="vagasContainer" class="vagas-grid">
+            </div>
+    </main>
+    <script src="ver_vagas.js"></script>
 </body>
 </html>

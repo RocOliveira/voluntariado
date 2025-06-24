@@ -86,6 +86,7 @@ form label {
 form input[type="text"],
 form input[type="number"],
 form input[type="url"],
+form input[type="tel"]
 form textarea,
 form select {
   padding: 0.75rem;
