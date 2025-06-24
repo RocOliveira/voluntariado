@@ -151,3 +151,197 @@ form button:hover {
 .footer-links a:hover {
   text-decoration: underline;
 }
+
+/* Centraliza o conteúdo principal da página */
+main {
+    padding: 2rem;
+    max-width: 1200px; /* Aumentado para permitir mais colunas de vagas */
+    margin: 0 auto;
+    flex-grow: 1; /* Permite que o main ocupe o espaço restante */
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+/* Estilos para a barra de pesquisa e filtro */
+.filtros-pesquisa {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    justify-content: center; /* Centraliza os campos */
+    flex-wrap: wrap; /* Permite que os itens quebrem a linha em telas menores */
+    padding: 0 1rem; /* Um pouco de padding para não colar nas bordas em telas pequenas */
+}
+
+.input-pesquisa,
+.select-filtro {
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    flex-grow: 1; /* Permite que ocupem o espaço disponível */
+    max-width: 350px; /* Limita o tamanho máximo para não ficarem gigantes */
+    box-sizing: border-box; /* Garante que padding não aumente a largura total */
+}
+
+/* Grid para os cards de vagas */
+.vagas-grid {
+    display: grid;
+    /* Adapta o número de colunas: mínimo de 280px por card, preenchendo o espaço disponível */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem; /* Espaçamento entre os cards */
+    justify-items: center; /* Centraliza os cards na grade */
+}
+
+/* Estilo individual do card da vaga */
+.card-vaga {
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Garante que tudo dentro do card respeite as bordas arredondadas */
+    width: 100%; /* Ocupa a largura da célula da grid */
+    max-width: 350px; /* Limite máximo para evitar cards muito largos */
+    background-color: white;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    display: flex; /* Permite organizar o conteúdo do card em coluna */
+    flex-direction: column;
+}
+
+.card-vaga:hover {
+    transform: translateY(-8px); /* Efeito de elevação ao passar o mouse */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-vaga img {
+    width: 100%;
+    height: 200px; /* Altura fixa para as imagens */
+    object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer */
+    display: block; /* Remove espaço extra abaixo da imagem */
+    border-bottom: 1px solid #eee;
+}
+
+.card-vaga h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin: 1rem 1rem 0.5rem;
+    text-align: center;
+}
+
+.card-vaga p {
+    font-size: 0.95rem;
+    color: #666;
+    margin: 0.5rem 1rem;
+    line-height: 1.5;
+}
+
+.card-vaga p strong {
+    color: #444;
+}
+
+/* Estilo para o resumo da descrição */
+.descricao-resumo {
+    margin-bottom: 1rem;
+    height: 45px; /* Altura fixa para o resumo */
+    overflow: hidden; /* Esconde o excesso de texto */
+    flex-grow: 1; /* Permite que o resumo ocupe o espaço antes dos botões */
+}
+
+/* Estilo para os botões "Ver Mais" e "Excluir" */
+.btn-ver-mais,
+.btn-excluir {
+    display: block; /* Ocupa a largura total do card */
+    width: calc(100% - 2rem); /* 100% menos o padding lateral */
+    margin: 0.5rem auto; /* Margem entre eles e centralização */
+    padding: 0.75rem 1.5rem;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-ver-mais {
+    background-color: #4CAF50; /* Cor verde para "Ver Mais" */
+}
+
+.btn-ver-mais:hover {
+    background-color: #45a049;
+}
+
+.btn-excluir {
+    background-color: #dc3545; /* Cor vermelha para "Excluir" */
+    margin-bottom: 1rem; /* Espaço na parte inferior do card */
+}
+
+.btn-excluir:hover {
+    background-color: #c82333;
+}
+
+/* Detalhes expandidos da vaga */
+.detalhes-necessidade {
+    padding: 0 1rem 0; /* Ajustado padding inferior para o botão abaixo */
+    margin-top: -0.5rem; /* Ajusta o espaço entre o botão e o conteúdo */
+    border-top: 1px solid #eee;
+    padding-top: 1rem;
+}
+
+.detalhes-necessidade p {
+    margin-bottom: 0.5rem;
+    word-wrap: break-word; /* Quebra palavras longas para caber no container */
+}
+
+/* --- Responsividade --- */
+@media (max-width: 768px) {
+    .menu {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .menu li a {
+        font-size: 20px;
+    }
+
+    main {
+        padding: 1rem;
+    }
+
+    .filtros-pesquisa {
+        flex-direction: column; /* Coloca pesquisa e filtro um abaixo do outro */
+        gap: 0.8rem;
+    }
+
+    .input-pesquisa,
+    .select-filtro {
+        max-width: none; /* Permite que ocupem 100% da largura em telas menores */
+    }
+
+    .vagas-grid {
+        grid-template-columns: 1fr; /* Uma única coluna em telas menores */
+        gap: 1.5rem;
+    }
+
+    .card-vaga {
+        max-width: 100%; /* Adapta ao espaço disponível */
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    /* Reduz o padding geral em telas muito pequenas */
+    .filtros-pesquisa {
+        padding: 0 0.5rem;
+    }
+
+    .btn-ver-mais,
+    .btn-excluir {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+}
