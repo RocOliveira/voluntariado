@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         ${vaga.endereco.cidade} - ${vaga.endereco.estado}, CEP ${vaga.endereco.cep}
                     </p>
                 </div>
+                <button class="btn-excluir" data-id="${vaga.id}">Excluir Vaga</button>
             </div>
         `;
     }
@@ -58,6 +59,14 @@ document.addEventListener("DOMContentLoaded", function () {
                     detalhesDiv.style.display = "none";
                     this.textContent = "Ver Mais";
                 }
+            });
+        });
+        //Adiciona eventos aos botões "Excluir Vaga"
+        document.querySelectorAll('.btn-excluir').forEach(button => {
+            button.addEventListener('click', function() {
+                const idParaExcluir = Number(this.dataset.id); // Converte para número
+                excluirVaga(idParaExcluir); // Chama a nova função de exclusão
+                vagasGlobais.splice(idParaExcluir, 1); // Remove a vaga da lista global
             });
         });
     }
@@ -92,4 +101,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Renderiza as vagas ao carregar a página pela primeira vez
     renderizarVagas();
+
+    // Função para excluir uma vaga
+    function excluirVaga(id) {
+        
+      // Pede confirmação ao usuário
+        if (confirm('Tem certeza que deseja excluir esta vaga? Esta ação é irreversível.')) {
+            // Filtra a lista de vagas para remover a que tem o ID correspondente
+            const novasVagas = vagasGlobais.filter(vaga => vaga.id !== id);
+
+            // Atualiza o localStorage com a nova lista (sem a vaga excluída)
+            localStorage.setItem('vagas', JSON.stringify(novasVagas));
+
+            // Atualiza a variável global para que a tela seja renderizada com os dados mais recentes
+            vagasGlobais = novasVagas;
+
+            // Re-renderiza as vagas na página, aplicando os filtros e pesquisa atuais
+            aplicarFiltros(); 
+            alert('Vaga excluída com sucesso!');
+    }
+}
+
 });
