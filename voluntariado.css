@@ -3,25 +3,31 @@ body {
   margin: 0;
   padding: 0;
 }
-
+/*Estilizando cabeçaljo*/
 header {
   background-color: #4CAF50;
   padding: 1rem;
 }
-
+/* Estilos da Lista de Navegação (Menu) */
 .menu {
   list-style: none;
   display: flex;
   justify-content: center;
   gap: 2rem;
 }
-
+/* Estilos dos Links do Menu */
 .menu li a {
   color: white;
   text-decoration: none;
   font-weight: bold;
   font-size: 25px;
 
+}
+
+/* Efeito ao passar o mouse sobre os links do menu */
+.menu li a:hover {
+    color: #e0e0e0;
+    transform: translateY(-2px);
 }
 
 .vagas-container {
@@ -63,11 +69,13 @@ main {
   margin: 0 auto;
 }
 
+/* Estilos para Títulos H1 (geralmente títulos de página) */
 h1 {
   text-align: center;
   margin-bottom: 2rem;
+  color: #333;
 }
-
+/* --- Estilos para o Formulário (Página de Cadastro) --- */
 form {
   display: flex;
   flex-direction: column;
@@ -76,13 +84,16 @@ form {
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 0 auto;
 }
-
+/* Estilos para Rótulos (Labels) do Formulário */
 form label {
   font-weight: bold;
   margin-bottom: 0.25rem;
+  color: #555;
 }
-
+/* Estilos para Campos de Input, Textarea e Select do Formulário */
 form input[type="text"],
 form input[type="number"],
 form input[type="url"],
@@ -96,17 +107,17 @@ form select {
   width: 100%;
   box-sizing: border-box;
 }
-
+/* Estilos para Subtítulos H3 dentro do Formulário */
 form h3 {
   margin-top: 2rem;
   font-size: 1.2rem;
   color: #333;
 }
-
+/* Estilos para Subtítulos H3 dentro do Formulário */
 form textarea {
   resize: vertical;
 }
-
+/* Estilos para Botões de Submissão do Formulário */
 form button {
   background-color: #4CAF50;
   color: white;
@@ -117,7 +128,7 @@ form button {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-
+/* Efeito ao passar o mouse sobre os botões do formulário */
 form button:hover {
   background-color: #45a049;
 }
@@ -171,9 +182,9 @@ h1 {
     display: flex;
     gap: 1rem;
     margin-bottom: 2rem;
-    justify-content: center; /* Centraliza os campos */
-    flex-wrap: wrap; /* Permite que os itens quebrem a linha em telas menores */
-    padding: 0 1rem; /* Um pouco de padding para não colar nas bordas em telas pequenas */
+    justify-content: center; 
+    flex-wrap: wrap; 
+    padding: 0 1rem; 
 }
 
 .input-pesquisa,
@@ -182,9 +193,9 @@ h1 {
     font-size: 1rem;
     border: 1px solid #ccc;
     border-radius: 6px;
-    flex-grow: 1; /* Permite que ocupem o espaço disponível */
-    max-width: 350px; /* Limita o tamanho máximo para não ficarem gigantes */
-    box-sizing: border-box; /* Garante que padding não aumente a largura total */
+    flex-grow: 1;
+    max-width: 350px; 
+    box-sizing: border-box; 
 }
 
 /* Grid para os cards de vagas */
@@ -192,8 +203,8 @@ h1 {
     display: grid;
     /* Adapta o número de colunas: mínimo de 280px por card, preenchendo o espaço disponível */
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem; /* Espaçamento entre os cards */
-    justify-items: center; /* Centraliza os cards na grade */
+    gap: 2rem; 
+    justify-items: center; 
 }
 
 /* Estilo individual do card da vaga */
@@ -201,42 +212,42 @@ h1 {
     border: 1px solid #e0e0e0;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    overflow: hidden; /* Garante que tudo dentro do card respeite as bordas arredondadas */
-    width: 100%; /* Ocupa a largura da célula da grid */
-    max-width: 350px; /* Limite máximo para evitar cards muito largos */
+    overflow: hidden; 
+    width: 100%;
+    max-width: 350px;
     background-color: white;
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    display: flex; /* Permite organizar o conteúdo do card em coluna */
+    display: flex; 
     flex-direction: column;
 }
-
+/* Efeito ao passar o mouse sobre o card da vaga */
 .card-vaga:hover {
-    transform: translateY(-8px); /* Efeito de elevação ao passar o mouse */
+    transform: translateY(-8px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
-
+/* Estilo da Imagem do Card */
 .card-vaga img {
     width: 100%;
-    height: 200px; /* Altura fixa para as imagens */
-    object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer */
-    display: block; /* Remove espaço extra abaixo da imagem */
+    height: 200px; 
+    object-fit: cover; 
+    display: block; 
     border-bottom: 1px solid #eee;
 }
-
+/* Estilo do Título da Vaga no Card */
 .card-vaga h3 {
     font-size: 1.5rem;
     color: #333;
     margin: 1rem 1rem 0.5rem;
     text-align: center;
 }
-
+/* Estilo dos Parágrafos no Card */
 .card-vaga p {
     font-size: 0.95rem;
     color: #666;
     margin: 0.5rem 1rem;
     line-height: 1.5;
 }
-
+/* Estilo para Texto em Negrito nos Parágrafos do Card */
 .card-vaga p strong {
     color: #444;
 }
@@ -244,17 +255,17 @@ h1 {
 /* Estilo para o resumo da descrição */
 .descricao-resumo {
     margin-bottom: 1rem;
-    height: 45px; /* Altura fixa para o resumo */
-    overflow: hidden; /* Esconde o excesso de texto */
-    flex-grow: 1; /* Permite que o resumo ocupe o espaço antes dos botões */
+    height: 45px; 
+    overflow: hidden; 
+    flex-grow: 1; 
 }
 
 /* Estilo para os botões "Ver Mais" e "Excluir" */
 .btn-ver-mais,
 .btn-excluir {
-    display: block; /* Ocupa a largura total do card */
-    width: calc(100% - 2rem); /* 100% menos o padding lateral */
-    margin: 0.5rem auto; /* Margem entre eles e centralização */
+    display: block;
+    width: calc(100% - 2rem); 
+    margin: 0.5rem auto; 
     padding: 0.75rem 1.5rem;
     color: white;
     border: none;
@@ -273,8 +284,8 @@ h1 {
 }
 
 .btn-excluir {
-    background-color: #dc3545; /* Cor vermelha para "Excluir" */
-    margin-bottom: 1rem; /* Espaço na parte inferior do card */
+    background-color: #dc3545; 
+    margin-bottom: 1rem; 
 }
 
 .btn-excluir:hover {
@@ -283,8 +294,8 @@ h1 {
 
 /* Detalhes expandidos da vaga */
 .detalhes-necessidade {
-    padding: 0 1rem 0; /* Ajustado padding inferior para o botão abaixo */
-    margin-top: -0.5rem; /* Ajusta o espaço entre o botão e o conteúdo */
+    padding: 0 1rem 0; 
+    margin-top: -0.5rem;
     border-top: 1px solid #eee;
     padding-top: 1rem;
 }
