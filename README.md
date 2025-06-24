@@ -5,27 +5,38 @@ Este projeto tem como objetivo desenvolver uma página web para o cadastro e ger
 ## 🚀 Funcionalidades
 
 * Formulário de cadastro de vagas para ONGs e instituições
-* Campos com validações e máscaras (ex: telefone, CNPJ, CEP)
+* Visualização detalhada da vaga
+* Pesquisa dinãmica das vagas por categoria ou descrição
+* Campo com validação e máscaras
 * Integração com a API ViaCEP para preenchimento automático de endereço
 * Listagem de vagas cadastradas com informações completas
-* Interface simples, responsiva e acessível
+* Botão para exclusão de vagas
+* Salvamento de vagas em localStorage
+* Interface simples e acessível
 
 ## 🛠️ Tecnologias Utilizadas
 
-* **HTML5** – Estrutura da página
-* **CSS3** – Estilização e responsividade
-* **JavaScript** – Validações, interatividade e integração com API
-* **API ViaCEP** – Consulta automática de endereço pelo CEP
+* **HTML5** - Estrutura da página
+* **CSS3** - Estilização e responsividade
+* **JavaScript** - Validações, interatividade e integração com API
+* **API ViaCEP** - Consulta automática de endereço pelo CEP
+* **localStorage** - Armazenamento dos dados das vagas diretamente no navegador do usuário
 
 ## 📄 Campos do Formulário
 
 * Nome da Instituição
-* Tipo de vaga (ex: educação, saúde, meio ambiente)
-* Descrição da vaga
-* Período (manhã, tarde, noite)
-* Local (CEP, endereço completo)
-* Contato (telefone, e-mail)
-* Requisitos (opcional)
+* Titulo da Vaga
+* Descrição da Vaga
+* TCategoria (ex: educação, saúde, meio ambiente)
+* Imagem
+* Telefone
+* Endereço da Instuituição com:
+    * CEP
+    * Rua
+    * Número
+    * Bairro
+    * Cidade
+    * Estado
 
 ## 🧪 Validações
 
@@ -33,3 +44,12 @@ Este projeto tem como objetivo desenvolver uma página web para o cadastro e ger
 * Validação de e-mail e telefone
 * Máscara para CEP e telefone
 * Verificação de preenchimento automático de endereço com ViaCEP
+
+# ✨ Contribuição
+Contribuições são bem-vindas! Se você tiver ideias para melhorias, encontrar bugs ou quiser adicionar novas funcionalidades, sinta-se à vontade para:
+
+* Fazer um fork do projeto.
+* Criar uma nova branch (git checkout -b feature/NomeDaSuaFeature).
+* Fazer suas alterações e commitá-las (git commit -m 'feat: Adiciona nova funcionalidade X').
+* Enviar para a sua branch (git push origin feature/NomeDaSuaFeature).
+* Abrir um Pull Request.
